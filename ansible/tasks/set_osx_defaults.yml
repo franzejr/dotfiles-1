@@ -49,11 +49,12 @@
       type: "bool"
       value: "false"
 
-- name: Set safarisettings
-  osx_defaults: "domain=com.apple.Safari"
-  key: "{{ item.key }}"
-  type: "{{ item.type }}"
-  value: "{{ item.value }}"
+- name: Set safari settings
+  osx_defaults:
+    domain: "com.apple.Safari"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
   with_items:
     - key: "UniversalSearchEnabled"
       type: "bool"
@@ -78,10 +79,11 @@
       value: "false"
 
 - name: Set Dock settings
-  osx_defaults: "domain=com.apple.dock"
-  key: "{{ item.key }}"
-  type: "{{ item.type }}"
-  value: "{{ item.value }}"
+  osx_defaults:
+    domain: "com.apple.dock"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
   with_items:
     - key: "autohide-delay"
       type: "float"
