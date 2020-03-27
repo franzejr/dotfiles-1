@@ -1,18 +1,18 @@
 ---
 - name: remove files
   file:
-    path: "{{item}}"
+    path: "{{ item }}"
     state: absent
   with_items: "{{ files_to_remove }}"
 - name: create folders
   file:
-    path: "{{item}}"
+    path: "{{ item }}"
     state: directory
   with_items: "{{ folders_to_create }}"
 - name: create files
   file:
-    path: "{{item}}"
-    state: file
+    path: "{{ item }}"
+    state: touch
   with_items: "{{ files_to_create }}"
 - name: rename files
   command: mv "{{ item.key }} {{ item.value }}"
