@@ -27,7 +27,7 @@
   gem:
     name: "{{ item }}"
     state: latest
-  with_tems: "{{ gems_list }}"
+  with_items: "{{ gem_list }}"
 
 - name: Manage Yarn packages
   yarn:
