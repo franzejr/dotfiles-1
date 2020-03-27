@@ -1,0 +1,22 @@
+---
+- name: remove files
+  file:
+    path: "{{item}}"
+    state: absent
+  loop: "{{ files_to_remove }}"
+
+- name: create folders
+  file:
+    path: "{{item}}"
+    state: directory
+  loop: "{{ folders_to_create }}"
+
+- name: create files
+  file:
+    path: "{{item}}"
+    state: present
+  loop: "{{ files_to_create }}"
+
+- name: rename files
+  comnand: mv "{{ item.key }} {{ item.value }}"
+  with_dict: "{{ files_to_rename }}"

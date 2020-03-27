@@ -1,0 +1,41 @@
+---
+- name: Update/Upgrade Homebrew
+  homebrew:
+    update_homebrew: true
+    upgrade_all: true
+
+- name: Manage taps
+  homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ brew_taps }}"
+
+- name: Install Casks
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ brew_casks }}"
+
+- name: Manage pip3 packages
+  pip:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state | default('latest') }}"
+    executable: pip3
+  with_dict: "{{ pip_packages }}"
+
+- name: Manage gems
+  gem:
+    name: "{{ item }}"
+    state: latest
+  with_tems: "{{ gems_list }}"
+
+- name: Manage Yarn packages
+  yarn:
+    name: "{{ item.key }}"
+    version: "{{ item.value }}"
+    path: "~/.dotfiles/node_modules"
+  with_dict: "{{ yarn_packges }}"
+
+- name: Getting golang binaries
+  shell: "go get -U {{ item }}"
+  with_items: "{{ golang_packages }}"

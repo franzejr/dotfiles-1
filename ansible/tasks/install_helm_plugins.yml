@@ -1,0 +1,4 @@
+---
+- name: Executing shell commands
+  shell: helm plugin install "{{ item }}"
+  with_items: "{{ helm_plugins }}"

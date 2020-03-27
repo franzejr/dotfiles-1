@@ -1,0 +1,214 @@
+---
+hostname: "bb-9"
+
+ruby_version: "2.6.3"
+
+files_to_remove:
+  - "~/.profile"
+
+files_to_create:
+  - "~/.secrets"
+
+files_to_rename:
+  "/usr/local/bin/kubens": "/usr/local/bin/knamespace"
+  "/usr/local/bin/kubectx": "/usr/local/bin/kcontext"
+
+files_to_link:
+  - src: "~/.dotfiles/git/gitconfig"
+    dest: "~/.gitconfig"
+  - src: "~/.dotfiles/git/gitignore"
+    dest: "~/.gitignore"
+  - src: "~/.dotfiles/git/gitmessage"
+    dest: "~/.gitmessage"
+  - src: "~/.dotfiles/gnupg/gnupg.conf"
+    dest: "~/.gnupg/gpg.conf"
+  - src: "~/.dotfiles/gnupg/gpg-agent.conf"
+    dest: "~/.gnupg/gpg-agent.conf"
+  - src: "~/.dotfiles/alacritty/alacritty.yml"
+    dest: "~/.config/alacritty.yml"
+  - src: "~/.dotfiles/tmux/tmux.conf"
+    dest: "~/.tmux.conf"
+  - src: "~/.dotfiles/zsh/zshrc"
+    dest: "~/.zshrc"
+  - src: "~/.dotfiles/vim/vimrc"
+    dest: "~/.vimrc"
+  - src: "~/.dotfiles/ssh/config"
+    dest: "~/.ssh/config"
+  - src: "~/.dotfiles/tarsnap/tarsnaprc"
+    dest: "~/.tarsnap/.tarsnaprc"
+  - src: "~/.dotfiles/tarsnap/tarsnap.plist"
+    dest: "~/.tarsnap/tarsnap.plist"
+
+folders_to_link:
+  - src: "~/.dotfiles/git/gitconfig"
+    dest: "~/.gitconfig"
+  - src: "~/.dotfiles/vim/"
+    dest: "~/.config/nvim"
+  - src: "~/.dotfiles/vim/"
+    dest: "~/.vim"
+  - src: "~/Library/Mobile Documents/com~apple~CloudDocs/Projects"
+    dest: "~/Projects"
+
+folders_to_create:
+  - "~/.ssh"
+  - "~/.gnupg"
+  - "~/.config"
+  - "~/.tarsnap"
+  - "~/.tarsnap/logs"
+  - "~/.tarsnap/cache"
+
+packages_to_install:
+  - tmux
+
+brew_taps:
+  - cytopia/tap
+  - heroku/brew
+  - homebrew/bundle
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/cask-versions
+  - homebrew/core
+  - homebrew/services
+  - jenkins-x/jx
+  - koekeishiya/formulae
+  - wata727/tflint
+  - weaveworks/tap
+
+brew_casks:
+  - 1password
+  - alacritty
+  - alfred
+  - bartender
+  - cleanmymac
+  - docker
+  - firefox
+  - font-fira-code
+  - google-cloud-sdk
+  - gpg-suite
+  - istat-menus
+  - keybase
+  - little-snitch
+  - macmediakeyforwarder
+  - spectacle
+  - spotify
+  - sqlectron
+  - telegram
+  - the-unarchiver
+  - transmission
+  - viscosity
+  - vlc
+  - whatsapp
+  - zoomus
+
+brew_packages:
+  - autoconf
+  - autojump
+  - automake
+  - aws-iam-authenticator
+  - readline
+  - awscli
+  - bat
+  - libtool
+  - cfssl
+  - coreutils
+  - curl
+  - diff-so-fancy
+  - direnv
+  - dive
+  - doctl
+  - fd
+  - findutils
+  - fzf
+  - git
+  - git-lfs
+  - gnu-getopt
+  - gnu-sed
+  - libksba
+  - pinentry
+  - gnupg
+  - go
+  - hadolint
+  - helm
+  - htop
+  - httpie
+  - jq
+  - kafkacat
+  - kubeaudit
+  - kubernetes-cli
+  - kubectx
+  - libyaml
+  - namebench
+  - neovim
+  - nmap
+  - p7zip
+  - packer
+  - pinentry-mac
+  - pkg-config
+  - pwgen
+  - reattach-to-user-namespace
+  - sops
+  - stern
+  - tarsnap
+  - tcptraceroute
+  - terraform
+  - the_silver_searcher
+  - tmux
+  - tree
+  - vault
+  - watch
+  - wget
+  - wrk
+  - yamllint
+  - yarn
+  - zlib
+  - heroku/brew/heroku
+  - jenkins-x/jx/jx
+  - weaveworks/tap/eksctl
+
+gem_list:
+  - rubocop
+  - bundler
+  - rufo
+  - standard
+  - reek
+golang_packages:
+  - "github.com/chuckha/kubeyaml/cmd/kubeyaml"
+  - "golang.org/x/tools/gopls"
+
+pip_packages:
+  aws-okta-processor: '1.3.0'
+  beautifulsoup4: '4.8.1'
+  boto3: '1.10.0'
+  botocore: '1.13.0'
+  bs4: '0.0.1'
+  certifi: '2019.9.11'
+  chardet: '3.0.4'
+  contextlib2: '0.6.0.post1'
+  docopt: '0.6.2'
+  docutils: '0.15.2'
+  idna: '2.8'
+  jmespath: '0.9.4'
+  python-dateutil: '2.8.0'
+  requests: '2.22.0'
+  s3transfer: '0.2.1'
+  six: '1.12.0'
+  soupsieve: '1.9.4'
+  urllib3: '1.25.6'
+
+yarn_packges:
+  prettier: '1.17.0'
+
+sudo_shell_commands:
+  - "scutil --set ComputerName {{ hostname }}"
+  - "scutil --set HostName {{ hostname }}"
+  - "scutil --set LocalHostName {{ hostname }}"
+  - "launchctl unload /System/Library/LaunchDaemons/org.cups.cupsd.plist"
+  - "launchctl load /System/Library/LaunchDaemons/org.cups.cupsd.plist"
+  - "update_dyld_shared_cache -root /"
+  - "pmset -a destroyfvkeyonstandby 1"
+
+shell_commands:
+  - "chflags nohidden ~/Library"
+
+helm_plugins:
+  - "https://github.com/futuresimple/helm-secrets"

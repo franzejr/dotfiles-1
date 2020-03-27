@@ -1,0 +1,9 @@
+---
+- name: Executing shell commands
+  shell: "{{ item }}"
+  with_items: "{{ shell_commands }}"
+
+- name: Executing shell commands as root
+  shell: "{{ item }}"
+  with_items: "{{ sudo_shell_commands }}"
+  become: yes

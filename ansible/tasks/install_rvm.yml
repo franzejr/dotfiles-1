@@ -1,0 +1,23 @@
+---
+- name: Setting ruby version
+  copy:
+    content: "{{ ruby_version }}"
+    dest: "{{ ansible_env.HOME }}/.ruby-version"
+    force: yes
+- name: Install rvm
+  shell: "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
+- name: Installing RVM
+  shell: "curl -sSL https://get.rvm.io | bash -s stable"
+- name: Installing RVM requirements
+  shell: "rvm requirements"
+- name: Installing Ruby 2.6.3
+  shell: "rvm install ruby-{{ ruby_version }}"
+- name: Setting Ruby 2.6.3 as default
+  shell: "rvm use ruby-{{ ruby_version }}"
+- name: Updating gems
+  shell: "rvm rubygems current"
+- name: Installing bundler
+  gem:
+    executable: "{{ ansible_env.HOME }}/.rvm/rubies/default/bin/gem"
+    name: bundler
+    state: present

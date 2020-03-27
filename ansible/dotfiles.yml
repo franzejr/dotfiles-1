@@ -1,0 +1,34 @@
+---
+- name: Install dotfiles
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: load custom vars
+      include_vars: variables.yml
+    - name: Clone git repo
+      git:
+        repo: https://github.com/lucazz/dotfiles.git
+        dest: ~/.dotfiles
+    - name: Install tpm
+      git:
+        repo: https://github.com/tmux-plugins/tpm.git
+        dest: ~/.dotfiles/tmux/tpm
+    - name: Install tmux plugins
+      include: tasks/install_tmux_plugins.yml
+    - name: Manage files and folders
+      include: tasks/manage_files_and_folders.yml
+    - name: Link files
+      include: tasks/link_files.yml
+    - name: Install RVM
+      include: tasks/install_rvm.yml
+    - name: Install packages
+      include: tasks/install_packages.yml
+    - name: Set OSX defaults
+      include: tasks/set_osx_defaults.yml
+    - name: Install helm plugins
+      include: tasks/install_helm_plugins.yml
+    - name: Execute shell commands
+      include: tasks/shell_commands.yml
+    - name: Reboot
+      reboot:
+        msg: "System has been successfully configured, rebooting now..."
