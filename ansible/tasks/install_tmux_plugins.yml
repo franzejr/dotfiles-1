@@ -1,3 +1,3 @@
 ---
 - name: Install tmux plugins
-  command: "TMUX_PLUGIN_MANAGER_PATH=~/.dotfiles/tmux/tpm/tpm ~/.dotfiles/tmux/tpm/bin/./install_plugins"
+  command: "~/.dotfiles/tmux/tpm/bin/./install_plugins"
