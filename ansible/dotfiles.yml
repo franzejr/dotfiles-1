@@ -17,8 +17,6 @@
         dest: ~/.dotfiles/tmux/tpm
         version: "v3.0.0"
         force: yes
-    - name: Install tmux plugins
-      include: tasks/install_tmux_plugins.yml
     - name: Manage files and folders
       include: tasks/manage_files_and_folders.yml
     - name: Link files

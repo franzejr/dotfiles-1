@@ -22,12 +22,6 @@ if [[ ! -x /usr/local/bin/ansible ]]; then
   brew install ansible
 fi
 
-# set macos defaults
-echo "[i] Set some specific macOS settings"
-set +e
-bash ${BASEDIR}/osx-defaults/set-defaults.sh
-set -e
-
 if [ -f "$HOME/.zshrc" ] && [ ! -h "$HOME/.zshrc" ]
 then
   echo "[i] Move current ~/.zshrcto ~/zshrc.backup"
