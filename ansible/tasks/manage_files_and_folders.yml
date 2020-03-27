@@ -12,7 +12,7 @@
 - name: create files
   file:
     path: "{{item}}"
-    state: present
+    state: file
   loop: "{{ files_to_create }}"
 - name: rename files
   command: mv "{{ item.key }} {{ item.value }}"
