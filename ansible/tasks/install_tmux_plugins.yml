@@ -1,5 +1,3 @@
 ---
 - name: Install tmux plugins
-  command: ~/.local/share/tpm/bin/install_plugins
-  args:
-    creates: ~/.local/share/tmux-plugins
+  command: ~/.dotfiles/tmux/tpm/bin/./install_plugins
