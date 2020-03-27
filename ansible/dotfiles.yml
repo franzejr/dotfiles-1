@@ -17,14 +17,14 @@
         dest: ~/.dotfiles/tmux/tpm
         version: "v3.0.0"
         force: yes
+    - name: Install packages
+      include: tasks/install_packages.yml
     - name: Manage files and folders
       include: tasks/manage_files_and_folders.yml
     - name: Link files
       include: tasks/link_files.yml
     - name: Install RVM
       include: tasks/install_rvm.yml
-    - name: Install packages
-      include: tasks/install_packages.yml
     - name: rename files
       command: mv "{{ item.key }} {{ item.value }}"
       with_dict: "{{ files_to_rename }}"
