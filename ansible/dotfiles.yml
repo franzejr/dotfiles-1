@@ -9,6 +9,7 @@
       git:
         repo: https://github.com/lucazz/dotfiles.git
         dest: ~/.dotfiles
+        version: "refactor"
         force: yes
     - name: Install tpm
       git:
