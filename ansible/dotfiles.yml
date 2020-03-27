@@ -9,10 +9,12 @@
       git:
         repo: https://github.com/lucazz/dotfiles.git
         dest: ~/.dotfiles
+        force: yes
     - name: Install tpm
       git:
         repo: https://github.com/tmux-plugins/tpm.git
         dest: ~/.dotfiles/tmux/tpm
+        force: yes
     - name: Install tmux plugins
       include: tasks/install_tmux_plugins.yml
     - name: Manage files and folders
