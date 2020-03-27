@@ -25,6 +25,9 @@
       include: tasks/install_rvm.yml
     - name: Install packages
       include: tasks/install_packages.yml
+    - name: rename files
+      command: mv "{{ item.key }} {{ item.value }}"
+      with_dict: "{{ files_to_rename }}"
     - name: Set OSX defaults
       include: tasks/set_osx_defaults.yml
     - name: Install helm plugins

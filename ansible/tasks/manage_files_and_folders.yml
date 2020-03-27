@@ -14,6 +14,3 @@
     path: "{{ item }}"
     state: touch
   with_items: "{{ files_to_create }}"
-- name: rename files
-  command: mv "{{ item.key }} {{ item.value }}"
-  with_dict: "{{ files_to_rename }}"
